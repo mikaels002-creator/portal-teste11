@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Redirecionando...</title>
+<script>
+  var path = window.location.pathname;
+  var parts = path.replace(/^\//,"").replace(/\/$/,"").split("/");
+  // Get base path (repo name on GitHub Pages)
+  var base = "";
+  if(parts.length > 1) base = "/" + parts[0];
+  var last = parts[parts.length - 1];
+  
+  if(last === 'admin' || last === 'admin.html') {
+    window.location.replace(base + '/admin.html');
+  } else if(last && last !== 'index.html' && last !== 'portal.html' && last.indexOf('.') === -1) {
+    // Tenant slug - save and redirect to portal
+    sessionStorage.setItem('tenant_slug', last);
+    window.location.replace(base + '/portal.html');
+  } else {
+    window.location.replace(base + '/');
+  }
+</script>
+</head>
+<body style="background:#06060a;color:#E8E4DD;display:flex;align-items:center;justify-content:center;height:100vh;font-family:system-ui">
+  <div style="text-align:center">
+    <div style="font-size:32px;margin-bottom:12px">🏢</div>
+    <div>Redirecionando...</div>
+  </div>
+</body>
+</html>
